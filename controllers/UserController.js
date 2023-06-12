@@ -14,7 +14,7 @@ const UserController = {
     try {
       const user = await User.findById(req.params.id).populate('thoughts').populate('friends');
       if (!user) {
-        res.status(404).json({ message: 'No user found with this id!' });
+        res.status(404).json({ message: 'Invalid' });
         return;
       }
       res.json(user);
@@ -37,7 +37,7 @@ const UserController = {
         runValidators: true,
       });
       if (!user) {
-        res.status(404).json({ message: 'No user found with this id!' });
+        res.status(404).json({ message: 'Invalid' });
         return;
       }
       res.json(user);
@@ -46,12 +46,11 @@ const UserController = {
     }
   },
 
-  // Delete a user by id
   async deleteUser(req, res) {
     try {
       const user = await User.findOneAndDelete({ _id: req.params.id });
       if (!user) {
-        res.status(404).json({ message: 'No user found with this id!' });
+        res.status(404).json({ message: 'Invalid' });
         return;
       }
     } catch (err) {

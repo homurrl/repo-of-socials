@@ -14,7 +14,7 @@ const ThoughtController = {
     try {
       const thought = await Thought.findById(req.params.id);
       if (!thought) {
-        res.status(404).json({ message: 'No thought found with this id!' });
+        res.status(404).json({ message: 'Invalid' });
         return;
       }
       res.json(thought);
@@ -72,7 +72,7 @@ const ThoughtController = {
         { new: true, runValidators: true }
       );
       if (!thought) {
-        res.status(404).json({ message: 'No thought found with this id!' });
+        res.status(404).json({ message: 'Invalid' });
         return;
       }
       res.json(thought);
